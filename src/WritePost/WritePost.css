@@ -1,0 +1,14 @@
+.writePost{
+  margin: auto;
+  max-width: 500px;
+}
+
+.writePost__chooseFile{
+  opacity: 0;
+  cursor: pointer;
+}
+.Img-display{
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgb(92, 92, 92);
+  object-fit: contain;
+}
