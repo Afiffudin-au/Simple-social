@@ -8,11 +8,13 @@ import {
   Link
 } from "react-router-dom";
 import AuthenticationForm from './AuthenticationForm/AuthenticationForm';
+import Home from './Home/Home';
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router>   
         <Switch>
+          <Route path="/" exact component={Home}></Route>
           <Route path="/writePost"><WritePost/></Route>
           <Route path="/authentication"><AuthenticationForm/></Route>
         </Switch>

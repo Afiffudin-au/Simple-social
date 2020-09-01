@@ -1,0 +1,27 @@
+.Card{
+  max-width: 550px;
+  margin: 50px auto;
+  border-radius: 10px;
+  background-color: #333333;
+  color: white;
+}
+.Card__header{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.Card__Name{
+  margin-left: 20px;
+}
+.Card__contentImg{
+  object-fit: fill;
+  width: 100%;
+}
+.Card__content{
+  padding: 10px;
+}
+.Card__action{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
