@@ -25,3 +25,20 @@
   display: flex;
   justify-content: space-around;
 }
+.Card__comment{
+  
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.Card__comment > .Card__commentInput{
+  border-radius: 5px;
+  background-color: rgb(224, 224, 224);
+  color: currentColor;
+  flex: 1;
+}
+.Card__comment > .Card__commentPush{
+  border-radius: 5px;
+  padding: 15px;
+}
+

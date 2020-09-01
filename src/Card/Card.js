@@ -4,10 +4,14 @@ import ShareIcon from '@material-ui/icons/Share';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CommentIcon from '@material-ui/icons/Comment';
+import Button from '@material-ui/core/Button';
 import './Card.css'
 import { IconButton } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
+import TextField from '@material-ui/core/TextField';
+import useStyles from '../useStyles/useStyles';
 function Card() {
+  const classes = useStyles();
   return (
     <div className="Card">
       <div class="Card__header">
@@ -34,6 +38,10 @@ function Card() {
           <IconButton>
           <ShareIcon style={{ color: deepPurple[50] }}/>  
           </IconButton>
+        </div>
+        <div className="Card__comment">
+          <TextField className="Card__commentInput" color="secondary" variant="filled" label="comment" type="email"/>
+          <Button  className="Card__commentPush" variant="contained" color="primary">Post</Button>
         </div>
       </div>
     </div>

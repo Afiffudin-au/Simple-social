@@ -6,5 +6,8 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+  inputComment : {
+    color : 'white'
+  }
 }));
 export default useStyles
