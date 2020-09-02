@@ -10,9 +10,10 @@ import { IconButton } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 function Card() {
+  console.log('render')
   return (
     <div className="Card">
-      <div class="Card__header">
+      <div className="Card__header">
         <Avatar className="post__avatar" alt="AAA" src="/static/images/avatar/1.jpg"></Avatar>
           <h5 className="Card__Name">My Name</h5>
         </div>

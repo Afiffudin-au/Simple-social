@@ -1,0 +1,7 @@
+.Home__action{
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+}

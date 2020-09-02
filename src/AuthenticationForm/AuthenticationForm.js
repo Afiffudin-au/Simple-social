@@ -1,8 +1,10 @@
-import React , {useState} from 'react' 
+import React , {useState,useEffect} from 'react' 
+import {useHistory} from 'react-router-dom'
  import TextField from '@material-ui/core/TextField';
 import useStyles from '../useStyles/useStyles';
 import './AuthenticationForm.css'
 import Button from '@material-ui/core/Button';
+import { auth } from '../firebase';
 function AuthenticationForm() {
   const [signUp,setSignUp] =  useState(false);
   const [signIn,setSignIn] = useState(true);
@@ -11,20 +13,15 @@ function AuthenticationForm() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [userName,setUserName] = useState('')
-
+  const [loading,setLoading]  = useState(false)
+  const [user,setUser] = useState(null)
+  const history = useHistory()
   const classes = useStyles();
-  
-  const handleAuthenticationSignIn = (e)=>{
-    e.preventDefault()
-  }
-  const handleAuthenticationSignUp = (e)=>{
-    e.preventDefault()
-  }
   const setSignUpDisplayAndsetsignUp = ()=>{
-   setDisplaySignIn(true)
-   setSignUp(true)
-   setDisplaySignUp(false)
-   setSignIn(false)
+    setDisplaySignIn(true)
+    setSignUp(true)
+    setDisplaySignUp(false)
+    setSignIn(false)
   }
   const setSignInDisplayAndsetsignIn = ()=>{
     setSignUp(false)
@@ -32,6 +29,53 @@ function AuthenticationForm() {
     setDisplaySignIn(false)
     setDisplaySignUp(true)
   }
+  useEffect(()=>{
+    const unsubscribe = auth.onAuthStateChanged((Authuser)=> {
+      if (Authuser) {
+        // User is signed in.
+        console.log(Authuser.displayName)
+        setUser(Authuser)
+      } else {
+        // No user is signed in.
+        setUser(null)
+      }
+    });
+
+    //clean up function
+    return ()=>{
+      unsubscribe()
+    }
+  },[user,userName])
+  const handleAuthenticationSignIn = (e)=>{
+    e.preventDefault()
+    setLoading(true)
+    auth.signInWithEmailAndPassword(email,password)
+      .then(()=>{
+        setLoading(false)
+        // const history = useHistory()
+        history.push('/')
+      }).catch((erorr)=>{
+        setLoading(false)
+        alert(erorr.message)
+      })
+  }
+  const handleAuthenticationSignUp = (e)=>{
+    e.preventDefault()
+    setLoading(true)
+    auth.createUserWithEmailAndPassword(email,password)
+    .then((authUser)=>{
+      setLoading(false)
+      return authUser.user.updateProfile({
+        displayName : userName
+      })
+    })
+    .catch((error)=> {
+      setLoading(false)
+      alert(error.message)
+    })
+  }
+
+
   return (
     <div className="AuthenticationForm" >
       <div className={classes.root} >
@@ -41,10 +85,10 @@ function AuthenticationForm() {
               <TextField  value={userName} onChange={(e)=>setUserName(e.target.value)} variant="filled" label="user name" type="text"/>
               <TextField  value={email} onChange={(e)=>setEmail(e.target.value)}    variant="filled" label="email" type="email"/>
               <TextField  value={password} onChange={(e)=>setPassword(e.target.value)} variant="filled" label="password" type="password"/>
-              <Button     onClick={handleAuthenticationSignUp} variant="contained" color="primary">Sign Up</Button>   
+              <Button type="submit" onClick={handleAuthenticationSignUp} variant="contained" color="primary">Sign Up</Button> 
             </>
           )
-        } 
+        }      
 
         {
           signIn && (
@@ -56,6 +100,14 @@ function AuthenticationForm() {
           )
       
         }
+         {
+          loading && (
+            <div className="loader">
+              <div className="spin"></div>
+            </div>  
+          )
+        }
+
       </div>
 
       <div className={classes.root} >
