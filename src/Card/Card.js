@@ -9,9 +9,7 @@ import './Card.css'
 import { IconButton } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
-import useStyles from '../useStyles/useStyles';
 function Card() {
-  const classes = useStyles();
   return (
     <div className="Card">
       <div class="Card__header">
