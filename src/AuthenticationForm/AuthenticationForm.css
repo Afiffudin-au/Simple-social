@@ -12,7 +12,18 @@
   margin: auto;
   text-align: center;
 }
-
+.Auth__captcha{
+  display: flex;
+  align-items: center;
+}
+.Auth__captcha > span{
+  
+  flex:0.4;
+  font-size: 25px;
+}
+.Auth__captcha > .Input_Captcha{
+  flex: 1;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

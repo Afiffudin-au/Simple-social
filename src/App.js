@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import AuthenticationForm from './AuthenticationForm/AuthenticationForm';
 import Home from './Home/Home';
+import LikeDislike from './LikeDislike/LikeDislike';
 function App() {
   return (
     <div className="App">

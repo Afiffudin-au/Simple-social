@@ -5,6 +5,9 @@
   background-color: #333333;
   color: white;
 }
+.Card__time{
+  padding-left: 10px;
+}
 .Card__header{
   padding: 10px;
   display: flex;
@@ -16,14 +19,25 @@
 .Card__contentImg{
   object-fit: fill;
   width: 100%;
+  padding-bottom: 15px;
+}
+.Card__contentP{
+  margin-left:  15px;
+  margin-top: -10px;
 }
 .Card__content{
-  padding: 10px;
+  padding: 5px;
 }
 .Card__action{
-  margin-top: 10px;
+  margin-top: -13px;
   display: flex;
   justify-content: space-around;
+}
+.Card__action span{
+  margin:5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
 }
 .Card__comment{
   
@@ -41,4 +55,24 @@
   border-radius: 5px;
   padding: 15px;
 }
-
+.Card__comment_post{
+  padding: 10px;
+}
+.Card__commentPush:disabled{
+  background-color: #ffffff !important;
+  color: #080808 !important;
+  opacity: 0.4;
+}
+.Card__link{
+  margin-top: 10px;
+  padding:10px;
+  background-color: #272c34;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+}
+@media(max-width:320px){
+  .Card{
+    max-width: 310px;
+  }
+}

@@ -1,0 +1,28 @@
+.profileUser__edit{
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+.profileUser__edit > .profileUser__InputEdit{
+  margin-bottom: 10px;
+}
+.profileUser__edit .profileUser__Erorr{
+  margin-bottom: 10px;
+}
+.profileUser__fileUpload{
+  margin-top: 10px !important;
+}
+.profileUser__fileUpload{
+  width: 100% !important;
+}
+.profileUser__fileInput{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
