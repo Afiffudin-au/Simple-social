@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import AuthenticationForm from './AuthenticationForm/AuthenticationForm';
 import Home from './Home/Home';

@@ -45,8 +45,7 @@ function Home() {
   },[limitPage])
   const observer = useRef();
   const lastPostElement = useCallback(node =>{
-    if(loading) return 
-    console.log(loading)
+    if(loading) return
     if(observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries=>{
       if(entries[0].isIntersecting){

@@ -2,7 +2,6 @@ import React , {useState, useEffect}from 'react'
 import './WritePost.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Input } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import useStyles from '../useStyles/useStyles';
 import { auth ,storage ,db } from '../firebase';
