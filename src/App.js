@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import AuthenticationForm from './AuthenticationForm/AuthenticationForm';
 import Home from './Home/Home';
-import LikeDislike from './LikeDislike/LikeDislike';
+import ProfileUser from './Profileuser/ProfileUser';
 function App() {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ function App() {
           <Route path="/" exact component={Home}></Route>
           <Route path="/writePost"><WritePost/></Route>
           <Route path="/authentication"><AuthenticationForm/></Route>
+          <Route path="/profileUser"><ProfileUser/></Route>
         </Switch>
       </Router>
     </div>

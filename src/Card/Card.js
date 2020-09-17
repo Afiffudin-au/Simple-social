@@ -85,7 +85,6 @@ function Card({postId,time,link,caption,imgUrl,user,photoURL,userName,likeCount,
     document.body.removeChild(el);
     setSuccessCopy(true)
   }
-  console.log('render 1')
   return (
     <>
     <Snackbar open={successCopy} autoHideDuration={800} onClose={() => setSuccessCopy(false)}>
@@ -94,7 +93,7 @@ function Card({postId,time,link,caption,imgUrl,user,photoURL,userName,likeCount,
       </Alert>
     </Snackbar>
     <div className="Card">
-        <MomoizedCardChild time={time} handleCopyLink={handleCopyLink} photoURL={photoURL} userName={userName} imgUrl={imgUrl} caption={caption} link={link}/>
+        <MomoizedCardChild user={user} time={time} handleCopyLink={handleCopyLink} photoURL={photoURL} userName={userName} imgUrl={imgUrl} caption={caption} link={link}/>
         <div className="Card__content">
           <div className="Card__action">
             <MemoizedChildActionComponent user={user} likeCount={likeCount} disLikeCount={disLikeCount} clickLike={clickLike} handleLike={handleLike} clickDislike={clickDislike} handleDislike={handleDislike} />  
@@ -108,8 +107,8 @@ function Card({postId,time,link,caption,imgUrl,user,photoURL,userName,likeCount,
     </>
   )
 }
-function CardChildComponent({time,handleCopyLink,photoURL,userName,imgUrl,caption,link}){
-  console.log('render Card')
+function CardChildComponent({user,time,handleCopyLink,photoURL,userName,imgUrl,caption,link}){
+
   return (
     <>
       <span className="Card__time">
@@ -123,37 +122,41 @@ function CardChildComponent({time,handleCopyLink,photoURL,userName,imgUrl,captio
         imgUrl &&  <img className="Card__contentImg" src={imgUrl} alt=""/>
       }
       <div className="Card__contentP"><p>{caption}</p>  </div>
-      <div className="Card__link">
+      {
+        link && (<div className="Card__link">
         <span className="Card__link__text">{link}</span> 
         <IconButton onClick={()=>handleCopyLink(link)}>
           <FileCopyIcon style={{color : blue[400] }}/>
         </IconButton>
-      </div>
+      </div>)
+      }
+     
     </>
   )
 }
 function ActionBox ({user,likeCount,disLikeCount,clickLike,handleLike,clickDislike,handleDislike}){
   console.log('render like')
   return(
-   <>
-    <IconButton onClick={handleLike}>
-      <ThumbUpAltIcon style={clickLike ? {color: blue[400]} : {color: deepPurple[50]}}/>
-      <span>{likeCount}</span>
-    </IconButton>
-    
-    <IconButton onClick={handleDislike}>
-      <ThumbDownIcon style={clickDislike ? {color: blue[400]} : {color: deepPurple[50]}}/>
-      <span>{disLikeCount}</span>
-    </IconButton>
-    
-    <IconButton disabled={!user}>
-      <CommentIcon style={{ color: deepPurple[50] }}/>
-    </IconButton>
-    <IconButton disabled={!user}>
-      <ShareIcon style={{ color: deepPurple[50] }}/>  
-    </IconButton>
-    
-  </>
+     user && (
+       <>
+        <IconButton onClick={handleLike}>
+          <ThumbUpAltIcon style={clickLike ? {color: blue[400]} : {color: deepPurple[50]}}/>
+          <span>{likeCount}</span>
+        </IconButton>
+        
+        <IconButton onClick={handleDislike}>
+          <ThumbDownIcon style={clickDislike ? {color: blue[400]} : {color: deepPurple[50]}}/>
+          <span>{disLikeCount}</span>
+        </IconButton>
+        
+        <IconButton disabled={!user}>
+          <CommentIcon style={{ color: deepPurple[50] }}/>
+        </IconButton>
+        <IconButton disabled={!user}>
+          <ShareIcon style={{ color: deepPurple[50] }}/>  
+        </IconButton>
+       </>
+     )
   )
 }
 function CommentChild({comments}){
@@ -175,7 +178,7 @@ function CardCommentChild({user,setComment,comment,handlePostComment}){
         <Button  onClick={handlePostComment} disabled={!comment} className="Card__commentPush" variant="contained" color="primary">Post</Button>
     </div>
     ):(
-      <span style={{ color: red[400] }}>You need Login Or Sign up to active like and comment</span>
+      <span style={{ color: red[400]}}>You need Login Or Sign up to active like and comment</span>
     )
   )
 }

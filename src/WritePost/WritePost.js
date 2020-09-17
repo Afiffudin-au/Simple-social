@@ -63,6 +63,7 @@ function WritePost() {
         disLike : 0,
       }).then(()=>{
         setCaption('')
+        setLink('')
         setSubmit(false)
         setLoading(false)
       })
@@ -106,6 +107,7 @@ function WritePost() {
               setSubmit(false)
               setImgDisplay(null)
               setImgUrl(null)
+              setLink('')
             })
         }
       )
@@ -128,7 +130,7 @@ function WritePost() {
         </form>
         </div> 
         <div className={classes.root} noValidate autoComplete="off">
-          <TextField id="filled-basic" onChange={(e)=>setLink(e.target.value)} label="Link" variant="filled" />
+          <TextField id="filled-basic" onChange={(e)=>setLink(e.target.value)} label="Link" variant="filled" value={link} />
         </div>
         {
           ImgDisplay &&  (<div className={classes.root}>

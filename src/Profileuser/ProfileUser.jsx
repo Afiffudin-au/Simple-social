@@ -4,6 +4,7 @@ import { auth } from '../firebase';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {red} from '@material-ui/core/colors';
+import Box from '@material-ui/core/Box';
 import './ProfileUser.css'
 function ProfileUser() {
   const [user,setUser] = useState(null)
@@ -37,6 +38,7 @@ const handleUpdateProfile = ()=>{
       photoURL: "https://barefootmedia.co.uk/wp-content/uploads/2016/01/Chris-user-profile.jpg"
     }).then(function() {
       alert('update Succes')
+      setNewUserName('')
       setUpdateProfile(current => current + 1)
     }).catch(function(error) {
       // An error happened.
@@ -44,13 +46,13 @@ const handleUpdateProfile = ()=>{
     });
    }
   
-}
-console.log('render')
+  }
   return (
-    <div>
-      <MemoizedChildComponent photoURL={photoURL}/>
+    <div style={{marginLeft: '20px'}}>
+     
       <div className="profileUser__edit">
-        <TextField className="profileUser__InputEdit" id="filled-basic" onChange={(e)=>setNewUserName(e.target.value)} label="New user name" variant="filled" />
+         <MemoizedChildComponent photoURL={photoURL} user={user}/>
+        <TextField className="profileUser__InputEdit" id="filled-basic" onChange={(e)=>setNewUserName(e.target.value)} label="New user name" variant="filled" value={newUserName}/>
         {
           inputEmpty && <span className="profileUser__Erorr" style={{color : red[500]}}>Cannot update empty name </span>
         }
@@ -59,18 +61,20 @@ console.log('render')
           <Button className="profileUser__fileUpload"variant="contained" color="primary">File Choose</Button> 
           <input type="file" className="profileUser__fileInput"/>
         </form>
-       
-        
       </div>
-     
     </div>
   )
 }
-function editProfileUser({photoURL}){
-  console.log("profile user render")
-  return (
-    <Avatar className="post__avatar" src={photoURL} alt="Az"></Avatar>
-  )
+function editProfileUser({photoURL,user})
+{
+  if(user !== null){
+    return (
+      <Box display='flex' alignItems='center'>
+        <Avatar style={{marginBottom:'10px',marginRight:'10px'}} className="post__avatar" src={photoURL} alt={user.displayName}></Avatar>
+        <span>{user.displayName}</span>
+      </Box>
+    )
+  }
 }
 const MemoizedChildComponent = React.memo(editProfileUser)
 export default ProfileUser
