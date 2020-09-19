@@ -9,8 +9,8 @@ import {blue,red} from '@material-ui/core/colors';
 import LoopIcon from '@material-ui/icons/Loop';
 import IconButton from '@material-ui/core/IconButton';
 function AuthenticationForm() {
-  const [signUp,setSignUp] =  useState(false);
-  const [signIn,setSignIn] = useState(true);
+  const [signUp,setSignUp] =  useState(false)
+  const [signIn,setSignIn] = useState(true)
   const [displaySignUp,setDisplaySignUp] = useState(true)
   const [displaySignIn,setDisplaySignIn] = useState(false)
   const [email,setEmail] = useState('')
@@ -21,7 +21,8 @@ function AuthenticationForm() {
   const [valueA,setValueA] = useState(0)
   const [valueB,setValueB] = useState(0)
   const [aritMath,setAritMath] = useState('')
-  const [captcha ,setCaptcha ] = useState(false);
+  const [captcha ,setCaptcha ] = useState(false)
+  const [captchaInput,setCaptchaInput] = useState(null)
   const history = useHistory()
   const classes = useStyles();
   useEffect(()=>{
@@ -61,6 +62,10 @@ function AuthenticationForm() {
       })
   }
   const handleAuthenticationSignUp = (e)=>{
+    if(captchaInput === null){
+      alert('Captcha Required')
+      return;
+    }
     e.preventDefault()
     setLoading(true)
     auth.createUserWithEmailAndPassword(email,password)
@@ -77,6 +82,7 @@ function AuthenticationForm() {
     })
   }
   const handleCaptcha = (e)=>{
+    setCaptchaInput(parseInt(e.target.value))
     if(aritMath === '+'){
       if(parseInt(e.target.value) === valueA + valueB){
         setCaptcha(false)
@@ -99,7 +105,6 @@ function AuthenticationForm() {
       }
     }
   }
-  console.log(aritMath)
   return (
     <div className="AuthenticationForm" >
       <div className={classes.root} >
