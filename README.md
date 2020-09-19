@@ -1,3 +1,8 @@
+Note : 
+-If you want to run this please paste your firebase key in src / firebase.js and enable User Authentication in your firebase console and also enable cloud firestore (database)
+-if you want to create code references or code documentation, you don't need to use the firebase key and the program won't run because the firebase key doesn't exist
+
+#####
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
